@@ -2,3 +2,4 @@
 .gitignore
 Dockerfile
 README.md
+app/trained_model_98.pkl

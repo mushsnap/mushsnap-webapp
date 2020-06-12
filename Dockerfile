@@ -9,8 +9,8 @@ RUN pip install --upgrade -r requirements.txt
 
 COPY app app/
 
+# Run it once to trigger densenet download
 RUN python app/server.py
 
-EXPOSE 5000
 
 CMD ["python", "app/server.py", "serve"]
