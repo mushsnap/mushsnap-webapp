@@ -5,7 +5,7 @@
 
 > This repository is a fork of the fastai deployment with Python, modified for the mushsnap project to detect poisonous mushrooms.
 
-### 🏠 [Homepage](https://mushsnap-webapp.herokuapp.com/)
+### 🏠 [Homepage](https://mailchi.mp/652773124a95/mushsnap)
 
 
 ### ✨ [Demo](https://mushsnap-webapp.herokuapp.com/)
