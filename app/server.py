@@ -8,9 +8,14 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+import os
 
-export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
-export_file_name = 'models/trained_model_99.pth'
+# export_file_url = "os.environ.get("FILE_URL")"
+export_file_url = "https://www.googleapis.com/drive/v3/files/1YFhdexgOfAZtiCVn4eqauy1TQUvXmtP_?alt=media&key=AIzaSyCtFRvO-H1NFGcLJxNhG9bpucP6UqOLd-U"
+
+print(export_file_url)
+
+export_file_name = 'trained_model_98.pkl'
 classes = ['edible', 'poisonous']
 
 
@@ -23,6 +28,7 @@ app.mount('/static', StaticFiles(directory='app/static'))
 
 
 async def download_file(url, dest):
+
     if dest.exists():
         return
     async with aiohttp.ClientSession() as session:
@@ -33,7 +39,7 @@ async def download_file(url, dest):
 
 
 async def setup_learner():
-    # await download_file(export_file_url, path / export_file_name)
+    await download_file(export_file_url, path / export_file_name)
     try:
         learn = load_learner(path, export_file_name)
         return learn
