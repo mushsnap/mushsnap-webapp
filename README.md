@@ -1,4 +1,32 @@
-# Starter for deploying [fast.ai](https://www.fast.ai) models on [Render](https://render.com)
+<h1 align="center">Welcome to mushsnap-webapp 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+</p>
+
+> This repository is a fork of the fastai deployment with Python, modified for the mushsnap project to detect poisonous mushrooms.
+
+### 🏠 [Homepage](https://mushsnap-webapp.herokuapp.com/)
+
+
+### ✨ [Demo](https://mushsnap-webapp.herokuapp.com/)
+
+## Author
+
+👤 **Pablo Ospino**
+
+* Website: https://ospino.me
+* Github: [@ospinooo](https://github.com/ospinooo)
+* LinkedIn: [@pabloospino](https://linkedin.com/in/pabloospino)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## Generate link
+https://www.wonderplugin.com/online-tools/google-drive-direct-link-generator/
+
+
+### Starter for deploying [fast.ai](https://www.fast.ai) models on [Render](https://render.com)
 
 This repo can be used as a starting point to deploy [fast.ai](https://github.com/fastai/fastai) models on Render.
 
@@ -16,5 +44,5 @@ Please use [Render's fast.ai forum thread](https://forums.fast.ai/t/deployment-p
 
 
 
-## Generate link
-https://www.wonderplugin.com/online-tools/google-drive-direct-link-generator/
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
