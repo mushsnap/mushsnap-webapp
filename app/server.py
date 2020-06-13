@@ -8,6 +8,7 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+import base64
 import os
 
 # export_file_url = "os.environ.get("FILE_URL")"
@@ -58,6 +59,34 @@ learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
 
 
+def model_predict(img):
+    img = open_image(BytesIO(img))
+    pred_class, pred_idx, outputs = learn.predict(img)
+    print(pred_class)
+    formatted_outputs = ["{:.1f}".format(value) for value in [
+        x * 100 for x in torch.nn.functional.softmax(outputs, dim=0)]]
+    pred_probs = sorted(
+        zip(learn.data.classes, map(str, formatted_outputs)),
+        key=lambda p: p[1],
+        reverse=True
+    )
+    pred_dict = {i[0]: i[1] for i in pred_probs}
+    # for k, v in pred_dict.items():
+    #    print(k, v)
+
+    message = {
+        'status': 200,
+        'message': 'OK',
+        'predictions': pred_dict,
+    }
+    return JSONResponse(message)
+
+
+def decode(img_b64):
+    img = base64.b64decode(img_b64)
+    return img
+
+
 @app.route('/')
 async def homepage(request):
     html_file = path / 'view' / 'index.html'
@@ -71,6 +100,19 @@ async def analyze(request):
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
     return JSONResponse({'result': str(prediction)})
+
+
+@app.route('/predict', methods=["POST"])
+async def upload(request):
+    if request.method == 'POST':
+        # Get the file from post request
+        form = await request.form()
+        img_bytes = form["image"]
+        if img_bytes != None:
+            # Make prediction
+            img = decode(img_bytes)
+            preds = model_predict(img)
+            return preds
 
 
 if __name__ == '__main__':
